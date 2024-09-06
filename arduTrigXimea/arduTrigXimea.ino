@@ -13,7 +13,7 @@ void loop() {
   
   
   digitalWrite(pinIN1, LOW);
-  delay(100);
+  delay(1000);
   digitalWrite(pinIN1, HIGH);
 
 }
