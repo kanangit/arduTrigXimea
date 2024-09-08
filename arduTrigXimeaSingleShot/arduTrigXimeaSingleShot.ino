@@ -20,7 +20,7 @@ void loop() {
   {    
     
     Serial.println(flag);
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 1; i++)
     {
       digitalWrite(pinIN1, LOW);
       delay(40);
