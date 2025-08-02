@@ -1,7 +1,7 @@
 // burst generator on R4 Minima
 // for triggering usb Ximea cameras
 // after receiving the trig signal outputs one pulse,
-// waits for 2.00 ms, and then outputs the (n_pulses - 1) 
+// waits for 500 ms, and then outputs the (n_pulses - 1) 
 // number of pulses
 
 //May or may not work on older Arduinos (r3 and older)
