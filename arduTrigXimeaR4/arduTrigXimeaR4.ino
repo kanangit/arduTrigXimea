@@ -1,4 +1,9 @@
-// 500‐pulse burst generator on R4 Minima. 
+// burst generator on R4 Minima
+// for triggering usb Ximea cameras
+// after receiving the trig signal outputs one pulse,
+// waits for 2.00 ms, and then outputs the (n_pulses - 1) 
+// number of pulses
+
 //May or may not work on older Arduinos (r3 and older)
 
 #include <Arduino.h>
@@ -10,6 +15,7 @@ static const uint8_t out1Pin  = 3;
 static const uint8_t out2Pin  = 4;
 
 // state vars
+unsigned int n_pulses = 4000;
 volatile bool triggered = false;  // set in ISR
 uint16_t genState = 0;            // 0..500
 unsigned long t0, lastTime;       // timestamps in µs
@@ -49,8 +55,8 @@ void loop() {
       break;
 
     default:
-      // genState == 2…500 => emit the rest on out2 at 500 Hz
-      if (genState < 500) {
+      // genState == 2…n_pulses => emit the rest on out2 at 500 Hz
+      if (genState < n_pulses) {
         if (now - lastTime >= 2000UL) {     // 2 ms period
           pulse(out2Pin);
           lastTime += 2000UL;
