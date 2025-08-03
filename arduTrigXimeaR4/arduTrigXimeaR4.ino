@@ -15,9 +15,9 @@ static const uint8_t out1Pin  = 3;
 static const uint8_t out2Pin  = 4;
 
 // state vars
-unsigned int n_pulses = 4000;
-double fps = 500;
-unsigned long reg_delay = round(1.0 / fps);
+unsigned int n_pulses = 2000;
+double fps = 400;
+unsigned long reg_delay = round(1.0  * 1000000 / fps);
 volatile bool triggered = false;  // set in ISR
 uint16_t genState = 0;            // 0..500
 unsigned long t0, lastTime;       // timestamps in µs
