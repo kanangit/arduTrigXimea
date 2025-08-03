@@ -16,6 +16,8 @@ static const uint8_t out2Pin  = 4;
 
 // state vars
 unsigned int n_pulses = 4000;
+double fps = 500;
+unsigned long reg_delay = round(1.0 / fps);
 volatile bool triggered = false;  // set in ISR
 uint16_t genState = 0;            // 0..500
 unsigned long t0, lastTime;       // timestamps in µs
@@ -57,9 +59,9 @@ void loop() {
     default:
       // genState == 2…n_pulses => emit the rest on out2 at 500 Hz
       if (genState < n_pulses) {
-        if (now - lastTime >= 2000UL) {     // 2 ms period
+        if (now - lastTime >= reg_delay) {     // 2 ms period
           pulse(out2Pin);
-          lastTime += 2000UL;
+          lastTime += reg_delay;
           genState++;
         }
       } else {
