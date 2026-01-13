@@ -1,8 +1,8 @@
 // burst generator on R4 Minima
 // for triggering usb Ximea cameras
-// after receiving the trig signal outputs one pulse,
-// waits for long_delay microseconds, and then outputs the (n_pulses - 1) 
-// number of pulses
+// after receiving the trig signal on the INPUT BNC of the device, outputs one pulse on the BNC 2 of the device,
+// waits for long_delay microseconds, and then outputs the the rest (n_pulses - 1) 
+// on the BNC 2 of the device. The second output pulse on BNC 2 conicides with a single pulse on BNC 1
 
 //May or may not work on older Arduinos (r3 and older)
 
@@ -11,8 +11,8 @@
 
 // state vars
 unsigned long pulse_width = 100UL; // duration of an individual pulse in us
-unsigned long long_delay = 2000UL; // delay between the first out pulse and and 2nd one
-unsigned long reg_delay = 250UL; // delay between the "regular pulses"
+unsigned long long_delay = 1000000UL; // delay between the first out pulse and and 2nd one
+unsigned long reg_delay = 2000UL; // delay between the "regular pulses"
 unsigned long n_pulses = 2000; // number of pulses
 //double fps = 400;
 //unsigned long reg_delay = round(1.0  * 1000000 / fps);
